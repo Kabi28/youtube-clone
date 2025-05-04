@@ -1,0 +1,40 @@
+.feed-wrapper{
+    display: grid;
+    grid-template-columns: repeat(auto-fit,minmax(235px,1fr));
+    grid-column-gap: 16px;
+    grid-row-gap: 30px;
+    margin-top: 10px;
+}   
+
+.feed-content{
+    margin: 2px;
+}
+.feed-content img{
+    width: 100%;
+    border-radius: 4%;
+
+}
+.feed-content h2{
+    font-size: 16px;
+    font-weight: 600;
+    color: black;
+    margin: 5px 0;
+    
+
+}
+
+.feed-content h3{
+    font-size: 14px;
+    font-weight: 600;
+    color: black;
+    margin: 6px 0;
+
+}
+
+.feed-content p{
+    font-size: 14px;
+    color: black;
+    
+}
+
+

@@ -1,0 +1,17 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: sans-serif;
+}
+a{
+  text-decoration: none;
+}
+img{
+  cursor: pointer;
+}
+
+.nav-wrap{
+  display: flex;
+  align-items: center;
+}

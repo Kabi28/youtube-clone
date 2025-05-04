@@ -1,0 +1,19 @@
+
+.feed{
+    background: #f9f9f9;
+    padding-left: 17%;
+    padding-right: 2%;
+    padding-right: 20px;
+    padding-bottom: 20px;
+
+}
+.big-feed{
+    padding-left: 7%;
+}
+
+@media (max-width:900px) {
+    .feed,.big-feed{
+        padding-left: 4%;
+        padding-right: 4%;
+    }
+}
