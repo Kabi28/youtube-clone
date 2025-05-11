@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import './Navbar.css'
 import menu_logo from '../../assets/menu.png'
 import logo from '../../assets/logo.png'
@@ -8,8 +8,13 @@ import more_logo from '../../assets/more.png'
 import notification_logo from '../../assets/notification.png'
 import profile_logo from '../../assets/jack.png'
 import { Link } from 'react-router-dom'
+import cross from '../../assets/cross.png'
 
-const Navbar = ({setSidebar}) => {
+
+const Navbar = ({setSidebar,fetchSearchData,inputData,setInputData}) => {
+    const resetInput =()=>{
+        setInputData('')
+    }
   return (
     <nav className='nav-wrap'>
         <div className=" nav-left nav-container">
@@ -19,8 +24,9 @@ const Navbar = ({setSidebar}) => {
 
         <div className="nav-middle nav-container">
             <div className="container">
-                <input type="text" placeholder='Search...'/>
-                <img src={search_logo} alt="" />
+                <input type="text" placeholder='Search...' value={inputData} onChange={(e)=>setInputData(e.target.value)}/>
+                {inputData.length>0?<img src={cross} alt="" className='cross' onClick={resetInput}/>:''}
+                <img src={search_logo} alt="" onClick={fetchSearchData} />
             </div>
         </div>
 

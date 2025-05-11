@@ -15,44 +15,47 @@ import megan from '../../assets/megan.png'
 import cameron from '../../assets/cameron.png'
 import './Sidebar.css'
 
-const Sidebar = ({sidebar,category,setCategory}) => {
+const Sidebar = ({sidebar,category,setCategory,setSearch}) => {
+    function resetSearch(){
+        setSearch('')
+    }
 
   return (
     <div className={`slide-wrap ${sidebar?"":"small-bar"}`}>
         <div className="slide-container">
-            <div className={`slide-links ${category === 0 ? 'active':''}`} onClick={()=>setCategory(0)}>
+            <div className={`slide-links ${category === 0 ? 'active':''}`} onClick={()=>{setCategory(0),resetSearch()}}>
                 <img src={home_logo} alt="" />
                 <p>Home</p>
             </div>
-            <div className={`slide-links ${category === 20 ? 'active':''}`} onClick={()=>setCategory(20)}>
+            <div className={`slide-links ${category === 20 ? 'active':''}`} onClick={()=>{setCategory(20),resetSearch()}}>
                 <img src={game} alt="" />
                 <p>Game</p>
             </div>
-            <div className={`slide-links ${category === 2 ? 'active':''}`} onClick={()=>setCategory(2)}>
+            <div className={`slide-links ${category === 2 ? 'active':''}`} onClick={()=>{setCategory(2),resetSearch()}}>
                 <img src={automobiles} alt="" />
                 <p>Automobiles</p>
             </div>
-            <div className={`slide-links ${category === 17 ? 'active':''}`} onClick={()=>setCategory(17)}>
+            <div className={`slide-links ${category === 17 ? 'active':''}`} onClick={()=>{setCategory(17),resetSearch()}}>
                 <img src={sports} alt="" />
                 <p>Sports</p>
             </div>
-            <div className={`slide-links ${category === 24 ? 'active':''}`} onClick={()=>setCategory(24)}>
+            <div className={`slide-links ${category === 24 ? 'active':''}`} onClick={()=>{setCategory(24),resetSearch()}}>
                 <img src={entertainment} alt="" />
                 <p>Entertainment</p>
             </div>
-            <div className={`slide-links ${category === 28 ? 'active':''}`} onClick={()=>setCategory(28)}>
+            <div className={`slide-links ${category === 28 ? 'active':''}`} onClick={()=>{setCategory(28),resetSearch()}}>
                 <img src={tech} alt="" />
                 <p>Tech</p>
             </div>
-            <div className={`slide-links ${category === 10 ? 'active':''}`} onClick={()=>setCategory(10)}>
+            <div className={`slide-links ${category === 10 ? 'active':''}`} onClick={()=>{setCategory(10),resetSearch()}}>
                 <img src={music} alt="" />
                 <p>Music</p>
             </div>
-            <div className={`slide-links ${category === 22 ? 'active':''}`} onClick={()=>setCategory(22)}>
+            <div className={`slide-links ${category === 22 ? 'active':''}`} onClick={()=>{setCategory(22),resetSearch()}}>
                 <img src={blogs} alt="" />
                 <p>Blogs</p>
             </div>
-            <div className={`slide-links ${category === 25 ? 'active':''}`} onClick={()=>setCategory(25)}>
+            <div className={`slide-links ${category === 25 ? 'active':''}`} onClick={()=>{setCategory(25),resetSearch()}}>
                 <img src={news} alt="" />
                 <p>News</p>
             </div>

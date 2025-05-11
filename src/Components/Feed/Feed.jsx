@@ -3,8 +3,7 @@ import './Feed.css'
 import { Link } from 'react-router-dom'
 import {API_KEY, truncateTitle, value_converter} from '../../data.js'
 import moment from 'moment'
-const Feed = ({category}) => {
-
+const Feed = ({category,search}) => {
     const [data,setData] = useState([]);
 
     const fetchData = ()=>{
@@ -14,17 +13,34 @@ const Feed = ({category}) => {
     useEffect(()=>{
         fetchData()
     },[category])
+
+    const hasSearchValue = search.length > 0;
   return (
     <div className='feed-wrapper'>
         {
-            data.map((item,index)=>(
-                <Link to={`/video/${item.snippet.categoryId}/${item.id}`} className="feed-content" key={index}>
-                    <img src={item.snippet.thumbnails.medium.url} alt="" />
-                    <h2>{truncateTitle(item.snippet.title)}</h2>
-                    <h3>{item.snippet.channelTitle}</h3>
-                    <p>{value_converter(item.statistics.viewCount)} views &bull; {moment(item.snippet.publishedAt).fromNow()}</p>
-                </Link>
-            ))
+            hasSearchValue?(
+                search.map((item, index) => (
+                    <Link
+                      to={`/video/${item.snippet.categoryId || 'search'}/${item.id.videoId || item.id}`}
+                      className="feed-content"
+                      key={index}
+                    >
+                      <img src={item.snippet.thumbnails.medium.url} alt="" />
+                      <h2>{truncateTitle(item.snippet.title)}</h2>
+                      <h3>{item.snippet.channelTitle}</h3>
+                      <p>{moment(item.snippet.publishedAt).fromNow()}</p>
+                    </Link>
+                  ))
+            ):(
+                data.map((item,index)=>(
+                    <Link to={`/video/${item.snippet.categoryId}/${item.id}`} className="feed-content" key={index}>
+                        <img src={item.snippet.thumbnails.medium.url} alt="" />
+                        <h2>{truncateTitle(item.snippet.title)}</h2>
+                        <h3>{item.snippet.channelTitle}</h3>
+                        <p>{value_converter(item.statistics.viewCount)} views &bull; {moment(item.snippet.publishedAt).fromNow()}</p>
+                    </Link>
+                ))
+            )
         }
         
     </div>

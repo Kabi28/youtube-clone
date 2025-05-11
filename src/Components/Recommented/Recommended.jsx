@@ -8,17 +8,16 @@ const Recommended = ({categoryId}) => {
 
   const fetchRecData= () =>{
       const recUrl = `https://youtube.googleapis.com/youtube/v3/videos?part=snippet%2CcontentDetails%2Cstatistics&chart=mostPopular&maxResults=50&regionCode=IN&videoCategoryId=${categoryId}&key=${API_KEY}`
-      fetch(recUrl).then(res=>res.json()).then(data=>setRecData(data.items))
+      fetch(recUrl).then(res=>res.json()).then(data=>{if(data.items){setRecData(data.items)}})
   }
-  console.log(recData)
   useEffect(()=>{
-    fetchRecData()
-  },[])
+    if(categoryId) {fetchRecData()}
+  },[categoryId])
 
   
       return(
         <div className='recommended'>
-          {
+          {recData.length>0?
             recData.map((item,index)=>{
               return(
                 <Link to={`/video/${item.snippet.categoryId}/${item.id}`} className="video-side" key={index}>
@@ -30,7 +29,9 @@ const Recommended = ({categoryId}) => {
                 </div>
               </Link>
               )
-            })
+            }):(
+              <p>No recommended</p>
+            )
           }
       </div>
       )

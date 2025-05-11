@@ -16,6 +16,7 @@ const VideoPlayer = () => {
     const [apiData, setApiData] = useState(null);
     const [channelData, setChannelData] = useState(null);
     const [commentData, setCommentData] = useState([]);
+    const [subscribe,setSubscribe] = useState(false)
     
 
     const fetchVideoData = () => {
@@ -29,9 +30,9 @@ const VideoPlayer = () => {
     const fetchChannelData = () => {
         const channelUrl = `https://youtube.googleapis.com/youtube/v3/channels?part=snippet%2CcontentDetails%2Cstatistics&id=${apiData ? apiData.snippet.channelId : ''}&key=${API_KEY}`
         fetch(channelUrl).then(res => res.json()).then(data => setChannelData(data.items[0]));
-
+       
         const commentUrl = `https://youtube.googleapis.com/youtube/v3/commentThreads?part=snippet%2Creplies&maxResults=20&videoId=${videoId}&key=${API_KEY}`
-        fetch(commentUrl).then(res => res.json()).then(data => setCommentData(data.items));
+        fetch(commentUrl).then(res => res.json()).then(data => setCommentData(data.items));  
     }
 
     useEffect(() => {
@@ -46,7 +47,7 @@ const VideoPlayer = () => {
         <div className='VideoPlayer'>
             <div className="player">
                 {/* <video src={video1} controls autoPlay muted></video> */}
-                <iframe src={`https://www.youtube.com/embed/${videoId}?autoplay=1`} frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowFullScreen></iframe>
+                <iframe src={`https://www.youtube.com/embed/${videoId}?autoplay=1`} frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerPolicy="strict-origin-when-cross-origin" allowFullScreen></iframe>
                 <h3>{apiData ? apiData.snippet.title : 'Title Loading...'}</h3>
             </div>
             <div className='video-info'>
@@ -66,7 +67,7 @@ const VideoPlayer = () => {
                     <h4>{apiData ? apiData.snippet.channelTitle : 'Loading...'}</h4>
                     <span>{channelData ? value_converter(channelData.statistics.subscriberCount) : "200K"} Subscribers</span>
                 </div>
-                <button>Subscribe</button>
+                <button className={subscribe?'subscribed':''} onClick={()=>setSubscribe(pre=>!pre)}>{subscribe?'Subscribed':'Subscribe'}</button>
             </div>
             <div className="video-desc">
                 <p>{apiData ? apiData.snippet.description.slice(0, 400) : 'Description Loading'}</p>

@@ -67,6 +67,9 @@ iframe{
     border-radius: 4px;
     cursor: pointer;
 }
+.publisher .subscribed{
+    background-color: #5a5a5a;
+}
 .video-desc{
     padding-left: 55px;
     margin: 15px 0;
